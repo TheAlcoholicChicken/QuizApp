@@ -6,7 +6,9 @@ function load_questions(){
 // creates the whole page view
 function show_page(){
     let page = document.getElementById('admin_page')
-    page.appendChild()
+    let editfield = document.createElement("div")
+    editfield.id = "edit_field"
+    page.appendChild(editfield)
 };
 
 // load the page

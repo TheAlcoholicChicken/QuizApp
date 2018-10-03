@@ -16,6 +16,7 @@ var quizes = {}
 function return_one_quiz(id, question, answers){
     let quiz = "<div class=\"quiz\"></div>"
     let question_html = "<div id=\"" + id + "\">" + question + "</div>";
+    let quiz = document.createElement("div")
     
     return quiz;
 };

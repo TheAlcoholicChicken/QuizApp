@@ -12,7 +12,7 @@ var one_quiz={
 
 var file_name = "quizlist.json";
 
-var quizes = {};
+var quizes = [];
 
 var quiz_id = 0;
 
@@ -29,6 +29,7 @@ function save_to_list(id){
 // returns one quiz in string to insert
 function return_one_quiz(id){
     let qid = "q" + id;
+    quizes.push(qid);
     let quiz = document.createElement("div");
     quiz.classList = "quiz";
     quiz.id = qid;

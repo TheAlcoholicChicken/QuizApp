@@ -12,6 +12,8 @@ function new_edit(){
 };
 
 function remove_question(id){
+    // remove certain question from quiz id list
+    quizes.splice(quizes.indexOf(id), 1);
     document.getElementById(id).remove();
 };
 
@@ -25,5 +27,9 @@ function delete_question(){
 
 // store all quizes in the editing field
 function storeQuiz(){
+    for(let i in quizes){
+        let quiz = document.getElementById(quizes[i]);
+        console.log(quiz);
+    }
     console.log("saving quiz list");
 };

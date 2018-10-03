@@ -10,13 +10,14 @@ var one_quiz={
     'id': Number
 };
 
-var quizes = {}
+var file_name = "quizlist.json";
+
+var quizes = {};
 
 // returns one quiz in string to insert
 function return_one_quiz(id, question, answers){
-    let quiz = "<div class=\"quiz\"></div>"
-    let question_html = "<div id=\"" + id + "\">" + question + "</div>";
     let quiz = document.createElement("div")
-    
+    quiz.classList = "quiz";
+    quiz.innerHTML = "<input class=\"quiz_question\">";
     return quiz;
 };

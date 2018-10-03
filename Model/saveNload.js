@@ -7,17 +7,52 @@ var one_quiz={
         3: String
     },
     'answer': Number,
-    'id': Number
+    'id': String
 };
 
 var file_name = "quizlist.json";
 
 var quizes = {};
 
+var quiz_id = 0;
+
+function save_to_list(id){
+    let quiz = document.getElementById(id);
+    let question = "";
+    let answer = "";
+    let choices = [];
+    for(i=0;i<4;i++){
+        console.log(document.getElementsByName(id)[i].value);
+    }
+};
+
 // returns one quiz in string to insert
-function return_one_quiz(id, question, answers){
-    let quiz = document.createElement("div")
+function return_one_quiz(id){
+    let qid = "q" + id;
+    let quiz = document.createElement("div");
     quiz.classList = "quiz";
-    quiz.innerHTML = "<input class=\"quiz_question\">";
+    quiz.id = qid;
+    quiz.innerHTML = "<h4>Question:</h4>"
+    let question = document.createElement("textarea");
+    question.id = qid + '_question';
+    question.className="quiz_question";
+    quiz.appendChild(question);
+    let ans = document.createElement("h5");
+    ans.innerHTML = "Answers:";
+    quiz.appendChild(ans);
+    for(i=1;i<5;i++){
+        let choice = document.createElement("input");
+        choice.classList = "choice";
+        choice.name=qid;
+        choice.id = qid+'_'+i;
+        quiz.appendChild(choice);
+        quiz.appendChild(document.createElement("br"))
+    }
+    let deletebtn = document.createElement("button");
+    deletebtn.innerText="Delete";
+    deletebtn.classList="btn btn-danger";
+    deletebtn.onclick=delete_question;
+    deletebtn.id = qid + '_delete';
+    quiz.appendChild(deletebtn);
     return quiz;
 };

@@ -1,5 +1,6 @@
 .quiz {
     width: 80%;
+    height: max-content;
     background-color: #f1f1f1;
     padding: 0.01em 16px;
     margin-left: auto;
@@ -13,4 +14,18 @@
     width: max-content;
     margin: auto;
     display: -webkit-box;
+}
+
+.quiz_question {
+    width: 70%;
+    height: 40%;
+    word-wrap: break-word;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.choice {
+    width: 60%;
+    height: 15%;
+    margin-bottom: 4px;
 }

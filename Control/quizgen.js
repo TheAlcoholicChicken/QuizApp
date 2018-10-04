@@ -41,12 +41,13 @@ function storeQuiz(){
             answer: 0,
             id: i
         };
+        console.log(quizhtml)
         if (quizhtml[6].checked){
-            quiz.anwswer = 1;
+            quiz.answer = 1;
         } else if (quizhtml[9].checked){
-            quiz.anwswer = 2;
+            quiz.answer = 2;
         } else if (quizhtml[12].checked){
-            quiz.anwswer = 3;
+            quiz.answer = 3;
         } else if (!quizhtml[3].checked){
             show_alert("No answer selected!");
             return;

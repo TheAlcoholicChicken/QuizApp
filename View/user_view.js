@@ -19,6 +19,7 @@ function set_one(content){
         let bullet = document.createElement("input");
         choice.innerHTML = content.choices[i];
         choice.classList = "choice";
+        choice.id = content.id + '_' + i + 'txt';
         bullet.type = "radio";
         bullet.name = content.id;
         bullet.id = content.id + '_' + i;

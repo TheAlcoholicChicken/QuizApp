@@ -27,9 +27,31 @@ function delete_question(){
 
 // store all quizes in the editing field
 function storeQuiz(){
+    localStorage.clear();
     for(let i in quizes){
-        let quiz = document.getElementById(quizes[i]);
+        let quizhtml = document.getElementById(quizes[i]).childNodes;
+        let quiz = {
+            question: quizhtml[1].value,
+            choices: {
+                0: quizhtml[4].value,
+                1: quizhtml[7].value,
+                2: quizhtml[10].value,
+                3: quizhtml[13].value
+            },
+            anwswer: 0,
+            id: i
+        };
+        if (quizhtml[6].checked){
+            quiz.anwswer = 1;
+        } else if (quizhtml[9].checked){
+            quiz.anwswer = 2;
+        } else if (quizhtml[12].checked){
+            quiz.anwswer = 3;
+        } else if (!quizhtml[3].checked){
+            show_alert("No answer selected!");
+        }
         console.log(quiz);
+        localStorage.setItem(i, JSON.stringify(quiz));
     }
     console.log("saving quiz list");
 };

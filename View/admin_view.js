@@ -4,6 +4,16 @@ function add_to_quizlist(quiz, place){
     editfield.appendChild(quiz);
 };
 
+function show_alert(msg){
+    let alert_field = document.getElementById("alert_field")
+    alert_field.innerHTML = msg;
+    alert_field.style.display = "block"
+    setTimeout(()=>{
+        alert_field.innerHTML = "";
+        alert_field.style.display = "none";
+    }, 3000);
+};
+
 function show_num_of_quiz(){
     let qz_num = document.getElementById("qzn");
     qz_num.innerHTML = "Number of Questions: " + document.getElementsByClassName("quiz_question").length;

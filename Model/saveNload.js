@@ -43,9 +43,14 @@ function return_one_quiz(id){
     quiz.appendChild(ans);
     for(i=1;i<5;i++){
         let choice = document.createElement("input");
+        let bullet = document.createElement("input");
         choice.classList = "choice";
+        bullet.type = "radio";
         choice.name=qid;
-        choice.id = qid+'_'+i;
+        choice.id = qid+'_'+i + '_'+ 'choice';
+        bullet.name=qid;
+        bullet.id = qid+'_'+i + '_'+ 'select';
+        quiz.appendChild(bullet);
         quiz.appendChild(choice);
         quiz.appendChild(document.createElement("br"))
     }

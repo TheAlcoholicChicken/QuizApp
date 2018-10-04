@@ -16,6 +16,8 @@ var quizes = [];
 
 var quiz_id = 0;
 
+var user_qz_id = 0;
+
 function save_to_list(id){
     let quiz = document.getElementById(id);
     let question = "";

@@ -21,6 +21,8 @@
     height: 40%;
     word-wrap: break-word;
     margin-bottom: 8px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 8px;
 }
 
@@ -28,4 +30,11 @@
     width: 60%;
     height: 15%;
     margin-bottom: 4px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.qz_line {
+    display: -webkit-box;
+    margin: auto;
 }

@@ -1,8 +1,17 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="./View/style.css">
     </head>
-    <body>
-        <div id="quizes_field"></div>
+    <body class="text-center">
+        <div id="user_alert" class="alert alert-danger" style="display:none;"></div>
+        <div id="quizes_field">
+                <div class="banner"><h1>Quiz Online</h1><span class="badge badge-primary">user</span></div>
+        </div>
+        <div id="mark" style="display:none;">Your Mark:</div>
+        <button id="submit_all" class="btn btn-primary">Submit</button>
+        <script src="./Model/saveNload.js"></script>
+        <script src="./Control/quizload.js"></script>
+        <script src="./View/user_view.js"></script>
     </body>
 </html>

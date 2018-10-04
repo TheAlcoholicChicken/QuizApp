@@ -38,7 +38,7 @@ function storeQuiz(){
                 2: quizhtml[10].value,
                 3: quizhtml[13].value
             },
-            anwswer: 0,
+            answer: 0,
             id: i
         };
         if (quizhtml[6].checked){
@@ -55,6 +55,7 @@ function storeQuiz(){
             quiz.choices[1] == ""|| quiz.choices[2] == "" ||
             quiz.choices[3] == ""){
                 show_alert("Empty Field!");
+                return;
         }
         localStorage.setItem(i, JSON.stringify(quiz));
     }

@@ -49,8 +49,13 @@ function storeQuiz(){
             quiz.anwswer = 3;
         } else if (!quizhtml[3].checked){
             show_alert("No answer selected!");
+            return;
         }
-        console.log(quiz);
+        if (quiz.question=="" || quiz.choices[0] == "" ||
+            quiz.choices[1] == ""|| quiz.choices[2] == "" ||
+            quiz.choices[3] == ""){
+                show_alert("Empty Field!");
+        }
         localStorage.setItem(i, JSON.stringify(quiz));
     }
     console.log("saving quiz list");

@@ -11,7 +11,7 @@ function show_alert(msg){
     setTimeout(()=>{
         alert_field.innerHTML = "";
         alert_field.style.display = "none";
-    }, 3000);
+    }, 4000);
 };
 
 function show_num_of_quiz(){

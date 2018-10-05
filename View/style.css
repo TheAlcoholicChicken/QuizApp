@@ -37,6 +37,7 @@
 .choice_user {
     width: 90%;
     background-color: #ffffff;
+    word-wrap: break-word;
 }
 
 .qz_line {

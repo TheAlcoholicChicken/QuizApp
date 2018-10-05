@@ -17,14 +17,17 @@ function set_one(content){
     for(i=0;i<4;i++){
         let choice = document.createElement("p");
         let bullet = document.createElement("input");
+        let row = document.createElement("div");
+        row.classList="qz_line";
         choice.innerHTML = content.choices[i];
-        choice.classList = "choice";
+        choice.classList = "choice_user";
         choice.id = content.id + '_' + i + 'txt';
         bullet.type = "radio";
         bullet.name = content.id;
         bullet.id = content.id + '_' + i;
-        quiz.appendChild(bullet);
-        quiz.appendChild(choice);
+        row.appendChild(bullet);
+        row.appendChild(choice);
+        quiz.appendChild(row);
         quiz.appendChild(document.createElement("br"));
     }
     let marking = document.createElement("div");

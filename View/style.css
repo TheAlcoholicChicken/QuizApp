@@ -34,7 +34,16 @@
     margin-right: auto;
 }
 
+.choice_user {
+    width: 90%;
+    background-color: #ffffff;
+}
+
 .qz_line {
     display: -webkit-box;
-    margin: auto;
+    width: 65%;
+    margin-bottom: -25px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }

@@ -11,11 +11,6 @@ function new_edit(){
     show_num_of_quiz();
 };
 
-function remove_question(id){
-    // remove certain question from quiz id list
-    quizes.splice(quizes.indexOf(id), 1);
-    document.getElementById(id).remove();
-};
 
 // delete one quiz from var and view
 function delete_question(){

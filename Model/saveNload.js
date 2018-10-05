@@ -65,6 +65,12 @@ function return_one_quiz(id){
     return quiz;
 };
 
+function remove_question(id){
+    // remove certain question from quiz id list
+    quizes.splice(quizes.indexOf(id), 1);
+    document.getElementById(id).remove();
+};
+
 // store all quizes in the editing field
 function storeQuiz(){
     localStorage.clear();

@@ -18,6 +18,10 @@ var quiz_id = 0;
 
 var user_qz_id = 0;
 
+var save_url = 'http://localhost:8080/save'
+var dele_url = 'http://localhost:8080/delete'
+var load_url = 'http://localhost:8080/load'
+
 function save_to_list(id){
     let quiz = document.getElementById(id);
     let question = "";
@@ -69,11 +73,15 @@ function remove_question(id){
     // remove certain question from quiz id list
     quizes.splice(quizes.indexOf(id), 1);
     document.getElementById(id).remove();
+    qid = id.split('q')[1]
+    console.log(qid);
+    $.post(dele_url, {"id":(qid-1)}, ()=>{});
 };
 
 // store all quizes in the editing field
 function storeQuiz(){
     localStorage.clear();
+    // var xhttp = new XMLHttpRequest();
     for(let i in quizes){
         let quizhtml = document.getElementById(quizes[i]).childNodes;
         let quiz = {
@@ -104,7 +112,13 @@ function storeQuiz(){
                 show_alert("Empty Field!");
                 return;
         }
-        localStorage.setItem(i, JSON.stringify(quiz));
+        // localStorage.setItem(i, JSON.stringify(quiz));
+        // xhttp.open("POST", 'localhost:8080/delete', true);
+        $.post(save_url, quiz, (err, msg)=>{
+            if (err) throw err;
+            console.log("Called back")
+        });
+        // xhttp.send()
     }
     console.log("saving quiz list");
 };

@@ -21,6 +21,7 @@ var user_qz_id = 0;
 var save_url = 'http://localhost:8080/save'
 var dele_url = 'http://localhost:8080/delete'
 var load_url = 'http://localhost:8080/load'
+var drop_url = 'http://localhost:8080/drop'
 
 function save_to_list(id){
     let quiz = document.getElementById(id);
@@ -58,8 +59,16 @@ function return_one_quiz(id){
         bullet.id = qid+'_'+i + '_'+ 'select';
         quiz.appendChild(bullet);
         quiz.appendChild(choice);
-        quiz.appendChild(document.createElement("br"))
+        quiz.appendChild(document.createElement("br"));
     }
+    let difficulty = document.createElement("label");
+    difficulty.innerHTML = "Difficult? checked for yes: ";
+    let checkbox = document.createElement("input");
+    checkbox.type= "checkbox";
+    difficulty.appendChild(checkbox);
+    quiz.appendChild(difficulty);
+    quiz.appendChild(document.createElement("br"));
+    quiz.appendChild(document.createElement("br"));
     let deletebtn = document.createElement("button");
     deletebtn.innerText="Delete";
     deletebtn.classList="btn btn-danger";
@@ -80,8 +89,10 @@ function remove_question(id){
 
 // store all quizes in the editing field
 function storeQuiz(){
-    localStorage.clear();
-    // var xhttp = new XMLHttpRequest();
+    // localStorage.clear();
+    $.post(drop_url, {}, (err, res)=>{
+        if(err) throw err;
+    });
     for(let i in quizes){
         let quizhtml = document.getElementById(quizes[i]).childNodes;
         let quiz = {
@@ -92,6 +103,7 @@ function storeQuiz(){
                 2: quizhtml[10].value,
                 3: quizhtml[13].value
             },
+            difficulty: quizhtml[15].lastChild.checked,
             answer: 0,
             id: i
         };
@@ -113,12 +125,15 @@ function storeQuiz(){
                 return;
         }
         // localStorage.setItem(i, JSON.stringify(quiz));
-        // xhttp.open("POST", 'localhost:8080/delete', true);
         $.post(save_url, quiz, (err, msg)=>{
             if (err) throw err;
-            console.log("Called back")
         });
-        // xhttp.send()
     }
     console.log("saving quiz list");
+};
+
+function get_all_quizes(){
+    $.post(load_url, {'foo':'bar'}).done((data)=>{
+        console.log(data);
+    });
 };

@@ -28,8 +28,7 @@ app.post('/save', (req, res)=>{
 })
 
 app.post('/load', (req, res)=>{
-    all_record = load();
-    res.send()
+    load(res);
 })
 
 app.post('/delete', (req, res)=>{
@@ -37,26 +36,31 @@ app.post('/delete', (req, res)=>{
     deleteOne(req.body['id']);
 })
 
+app.post('/drop', (req, res)=>{
+    console.log('Cleanup db');
+    drop_all();
+});
+
 function save(question){
     MongoClient.connect(dburl, (err, db)=>{
         if(err) throw err;
-        var dbo = db.db(DB_NAME);
+        let dbo = db.db(DB_NAME);
         dbo.collection(COL_NAME).insertOne(question, (err, res)=>{
             if (err) throw err;
-            // console.log(res);
             db.close();
         });
     });
 };
 
-function load(){
+function load(res){
     MongoClient.connect(dburl, (err, db)=>{
         if(err) throw err;
-        var dbo = db.db(DB_NAME);
+        let dbo = db.db(DB_NAME);
         dbo.collection(COL_NAME).find({}).toArray((err, result)=>{
             if (err) throw err;
             db.close();
-            return result;
+            console.log(result);
+            res.send(result);
         });
     });
 };
@@ -65,9 +69,21 @@ function deleteOne(question){
     console.log("deleting "+question)
     MongoClient.connect(dburl, (err, db)=>{
         if (err) throw err;
-        var dbo = db.db("mydb");
-        dbo.collection(COL_NAME).deleteMany({id: 0}, ()=>{});
+        let dbo = db.db(DB_NAME);
+        dbo.collection(COL_NAME).deleteMany({id: question}, (err, obj)=> {
+            if (err) throw err;
+            console.log(obj.result);
+        });
         db.close();
     });
 };
+
+function drop_all(){
+    MongoClient.connect(dburl, (err, db)=>{
+        if(err) throw err;
+        let dbo = db.db(DB_NAME);
+        dbo.collection(COL_NAME).drop({}, ()=>{});
+        db.close();
+    })
+}
 

@@ -1,12 +1,12 @@
 // load all quizes for user to take
 function retriveQuiz(){
+    let quizes = get_all_quizes();
     if (localStorage.length ==0){
         show_alert("No Quiz Available!");
     }
     for(let i=0;i<localStorage.length;i++){
         let quiz = JSON.parse(localStorage.getItem(i));
         set_one(quiz);
-        console.log(quiz);
     }
 };
 

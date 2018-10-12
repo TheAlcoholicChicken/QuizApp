@@ -12,7 +12,13 @@ function set_one(content){
     quiz.classList="quiz";
     quiz.id = user_qz_id;
     user_qz_id++;
-    quiz.innerHTML="<h4>Question "+quiz.id+":</h4>" + 
+    let difficulty = '';
+    if(content.difficulty){
+        difficulty = "Hard";
+    } else {
+        difficulty = "Easy";
+    }
+    quiz.innerHTML="<h4>Question "+quiz.id + "</h4><div class='badge badge-secondary'>" + difficulty+"</div>" + 
                     "<p class=\"quiz_question\">" + content.question + "</p>" + "<h5>Answers:</h5>";
     for(i=0;i<4;i++){
         let choice = document.createElement("p");

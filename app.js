@@ -8,13 +8,8 @@ var app = express();
 const PRODUCTION = true;
 // db stuff
 const mongoose = require('mongoose');
-if (PRODUCTION){
-    const uriString = 'mongodb://webintro:webintro12345678@ds129796.mlab.com:29796';
-    const dbName = 'heroku_z646rqgn';
-}else{
-    const uriString = 'mongodb://localhost:27017';
-    const dbName = 'QuizApp';
-}
+const uriString = PRODUCTION ? 'mongodb://webintro:Webintro12345678@ds129796.mlab.com:29796' : 'mongodb://localhost:27017';
+const dbName = PRODUCTION ? 'heroku_z646rqgn' : 'QuizApp';
 
 let UserSchema = new mongoose.Schema({
     user_name: String,

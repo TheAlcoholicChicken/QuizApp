@@ -9,7 +9,7 @@ const PRODUCTION = true;
 // db stuff
 const mongoose = require('mongoose');
 if (PRODUCTION){
-    const uriString = 'https://www.mlab.com/databases';
+    const uriString = 'mongodb://webintro:webintro12345678@ds129796.mlab.com:29796';
     const dbName = 'heroku_z646rqgn';
 }else{
     const uriString = 'mongodb://localhost:27017';

@@ -5,11 +5,16 @@ const path = require('path');
 const port = process.env.PORT || 3000;
 var http = require('http').Server(app);
 var app = express();
-
+const PRODUCTION = true;
 // db stuff
 const mongoose = require('mongoose');
-const uriString = 'mongodb://localhost:27017';
-const dbName = 'QuizApp';
+if (PRODUCTION){
+    const uriString = 'https://www.mlab.com/databases';
+    const dbName = 'heroku_z646rqgn';
+}else{
+    const uriString = 'mongodb://localhost:27017';
+    const dbName = 'QuizApp';
+}
 
 let UserSchema = new mongoose.Schema({
     user_name: String,

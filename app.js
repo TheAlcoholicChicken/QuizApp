@@ -10,6 +10,8 @@ const PRODUCTION = true;
 const mongoose = require('mongoose');
 const uriString = PRODUCTION ? 'mongodb://webintro:Webintro12345678@ds129796.mlab.com:29796' : 'mongodb://localhost:27017';
 const dbName = PRODUCTION ? 'heroku_z646rqgn' : 'QuizApp';
+const __TOKEN = "nOqpLX3j6efeXeNobOkcFsRQBSNV3DLzbothSetMRZ4";
+const __AUTH_TOKEN = "DF48284D34E4371DB6B3B0EB25B22446";
 
 let UserSchema = new mongoose.Schema({
     user_name: String,

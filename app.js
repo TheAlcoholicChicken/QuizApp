@@ -6,12 +6,15 @@ const port = process.env.PORT || 3000;
 var http = require('http').Server(app);
 var app = express();
 const PRODUCTION = true;
+var request = require('request');
 // db stuff
 const mongoose = require('mongoose');
-const uriString = PRODUCTION ? 'mongodb://webintro:Webintro12345678@ds129796.mlab.com:29796' : 'mongodb://localhost:27017';
+const uriString = PRODUCTION
+    ? 'mongodb://webintro:Webintro12345678@ds129796.mlab.com:29796'
+    : 'mongodb://localhost:27017';
 const dbName = PRODUCTION ? 'heroku_z646rqgn' : 'QuizApp';
-const __TOKEN = "nOqpLX3j6efeXeNobOkcFsRQBSNV3DLzbothSetMRZ4";
-const __AUTH_TOKEN = "DF48284D34E4371DB6B3B0EB25B22446";
+const __TOKEN = 'nOqpLX3j6efeXeNobOkcFsRQBSNV3DLzbothSetMRZ4';
+const __AUTH_TOKEN = 'DF48284D34E4371DB6B3B0EB25B22446';
 
 let UserSchema = new mongoose.Schema({
     user_name: String,
@@ -60,7 +63,7 @@ app.post('/user/get_badge_message', authToken, (req, res) => {
         if (user) {
             res.json({
                 userid: user_id,
-                msg: 'User has score ' + user.data.score
+                badge_text: 'User has score ' + user.data.score
             });
         } else {
             res.json({ Error: "User doesn't exist" });
@@ -69,7 +72,13 @@ app.post('/user/get_badge_message', authToken, (req, res) => {
     });
 });
 
-app.get(['/', '/user'], (req, res) => {
+app.get('/', (req, res) => {
+    console.log('main');
+
+    return res.sendFile(__dirname + '/login.html');
+});
+
+app.get('/user', (req, res) => {
     console.log('user');
 
     return res.sendFile(__dirname + '/user.html');
@@ -77,6 +86,33 @@ app.get(['/', '/user'], (req, res) => {
 
 app.get('/admin', (req, res) => {
     return res.sendFile(__dirname + '/admin.html');
+});
+
+app.post('/blogin', function(req, res) {
+    var db = req.db;
+    var myJSONObject = { user_email: req.body.email, password: req.body.password, token: __TOKEN };
+
+    request(
+        {
+            url: 'https://management-system-api.herokuapp.com/user/login',
+            method: 'POST',
+            json: true,
+            body: myJSONObject
+        },
+        function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                console.log(body);
+
+                isUser = false;
+              
+                console.log(body);
+                console.log(myJSONObject);
+                res.status(200).json({});
+            } else {
+                res.status(400).json({});
+            }
+        }
+    );
 });
 
 app.use(express.static(path.join(__dirname, '/Control')));

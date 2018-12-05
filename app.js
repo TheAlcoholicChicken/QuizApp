@@ -106,8 +106,19 @@ app.post('/blogin', function(req, res) {
                 isUser = false;
               
                 console.log(body);
-                console.log(myJSONObject);
-                res.status(200).json({});
+
+                User.create({
+                    user_name: myJSONObject.user_email,
+                    core_app_id: body.user_id,
+                    data: {
+                        score: Math.floor(Math.random() * 100)
+                    }
+                }, (err) => {
+                    if (err) res.status(400).json({});
+
+
+                        res.status(200).json({});
+                });
             } else {
                 res.status(400).json({});
             }

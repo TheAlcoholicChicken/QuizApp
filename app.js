@@ -107,17 +107,28 @@ app.post('/blogin', function(req, res) {
               
                 console.log(body);
 
-                User.create({
+                User.findOne({
                     user_name: myJSONObject.user_email,
-                    core_app_id: body.user_id,
-                    data: {
-                        score: Math.floor(Math.random() * 100)
-                    }
-                }, (err) => {
+                    core_app_id: body.user_id
+                }, (err, u) => {
                     if (err) res.status(400).json({});
 
+                    if (u == null) {
+                        User.create(
+                            {
+                                user_name: myJSONObject.user_email,
+                                core_app_id: body.user_id,
+                                data: {
+                                    score: Math.floor(Math.random() * 100)
+                                }
+                            },
+                            err => {
+                                if (err) res.status(400).json({});
 
-                        res.status(200).json({});
+                                res.status(200).json({});
+                            }
+                        );
+                    }
                 });
             } else {
                 res.status(400).json({});
